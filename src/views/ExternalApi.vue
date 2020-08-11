@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="mb-5">
-      <h1>External API</h1>
+      <h1>API Externa Azure</h1>
       <p>
         Call an external API by clicking the button below. This will call the external API using an access token, and the API will validate it using
         the API's audience value.
       </p>
 
-      <button class="btn btn-primary mt-5" @click="callApi">Call API</button>
+      <button class="btn btn-primary mt-5" @click="callApi">Cotizacion Dólar Compra</button>
     </div>
 
     <div class="result-block-container">
@@ -35,7 +35,11 @@ export default {
       const accessToken = await this.$auth.getTokenSilently();
 
       try {
-        const { data } = await this.$http.get("https://apim-flask-stocks.azure-api.net/dolar-hoy/cotizacion-ccl?cotizacion=compra", {
+        // https://flask-auth0.azurewebsites.net/cotizacion-ccl?cotizacion=compra
+        // http://127.0.0.1:5000/decode-jwt
+        // http://127.0.0.1:5000/cotizacion-ccl?cotizacion=compra
+
+        const { data } = await this.$http.get("http://127.0.0.1:3010/api/private", {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
