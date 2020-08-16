@@ -1,18 +1,17 @@
 <template>
   <div>
     <div class="mb-5">
-      <h1>API Externa Azure</h1>
+      <h1>API Spring Boot Local</h1>
       <p>
-        Call an external API by clicking the button below. This will call the external API using an access token, and the API will validate it using
-        the API's audience value.
+        Envía una solicitud POST a la API para registrar al usuario en la base de datos Postgres.
       </p>
 
-      <button class="btn btn-primary mt-5" @click="callApi">Cotizacion Dólar Compra</button>
+      <button class="btn btn-primary mt-5" @click="callApi">Registrarse</button>
     </div>
 
     <div class="result-block-container">
       <div :class="['result-block', executed ? 'show' : '']">
-        <h6 class="muted">Result</h6>
+        <h6 class="muted">Resultado</h6>
         <pre v-highlightjs="JSON.stringify(apiMessage, null, 2)">
           <code class="js rounded"></code>
         </pre>
@@ -38,8 +37,10 @@ export default {
         // https://flask-auth0.azurewebsites.net/cotizacion-ccl?cotizacion=compra
         // http://127.0.0.1:5000/decode-jwt
         // http://127.0.0.1:5000/cotizacion-ccl?cotizacion=compra
+        // http://127.0.0.1:3010/api/private
+        // http://127.0.0.1:3010/api/users/signup
 
-        const { data } = await this.$http.get("http://127.0.0.1:3010/api/private", {
+        const { data } = await this.$http.post("http://127.0.0.1:3010/api/users/signup", {},{
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
