@@ -32,6 +32,8 @@ export default {
   methods: {
     async callApi() {
       const accessToken = await this.$auth.getTokenSilently();
+      // eslint-disable-next-line
+      console.log(`Bearer ${accessToken}`);
 
       try {
         // https://flask-auth0.azurewebsites.net/cotizacion-ccl?cotizacion=compra
@@ -40,7 +42,7 @@ export default {
         // http://127.0.0.1:3010/api/private
         // http://127.0.0.1:3010/api/users/signup
 
-        const { data } = await this.$http.post("http://127.0.0.1:3010/api/users/signup", {},{
+        const { data } = await this.$http.post("http://127.0.0.1:3010/api/user/signup", {},{
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -55,3 +57,4 @@ export default {
   }
 };
 </script>
+
